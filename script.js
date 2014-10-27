@@ -69,14 +69,6 @@ $('#castme').click(function(){
     function onLoadError() {
         console.log("Failed to load image.")
     };
-    function sessionUpdateListener(isAlive){
-        var message=isAlive ? 'Session Updated' : 'Session Removed';
-        message += ':' + session.sessionId;
-        
-        if (!isAlive) {
-            session=null;
-        }
-    }
 });
 $('#stop').click(function(){
     stopApp();
@@ -90,3 +82,11 @@ $('#stop').click(function(){
         console.log("Error stopping app.")
     };
 });
+function sessionUpdateListener(isAlive){
+        var message=isAlive ? 'Session Updated' : 'Session Removed';
+        message += ':' + session.sessionId;
+        
+        if (!isAlive) {
+            session=null;
+        }
+}
