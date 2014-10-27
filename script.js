@@ -46,6 +46,7 @@ $('#castme').click(function(){
         console.log("Successfully created session: " + e.sessionId);
         session=e;
         session.addUpdateListener(sessionUpdateListener.bind(this));
+        session.addMediaListener(onMediaDiscovered.bind(this,'addMediaListener'));
         loadMedia();
     };
     function onLaunchError() {
@@ -78,6 +79,9 @@ $('#castme').click(function(){
             session=null;
         }
     };
+    function onMediaDiscovered(how,media){
+        console.log("New media session ID: " + media.mediaSessionId + '(' + how + ')');
+    }
 });
 $('#stop').click(function(){
     stopApp();
@@ -90,4 +94,7 @@ $('#stop').click(function(){
     function onStopAppError(){
         console.log("Error stopping app.")
     };
+});
+$('#change').click(function(){
+    loadMedia();
 });
