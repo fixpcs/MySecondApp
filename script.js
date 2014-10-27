@@ -35,6 +35,14 @@ $(document).ready(function(){
     function onInitError(){
         console.log("Initialization failed.");
     };
+    function sessionUpdateListener(isAlive){
+        var message=isAlive ? 'Session Updated' : 'Session Removed';
+        message += ':' + session.sessionId;
+        
+        if (!isAlive) {
+            session=null;
+        }
+    };   
 })
 $('#castme').click(function(){
     launchApp();
@@ -82,11 +90,3 @@ $('#stop').click(function(){
         console.log("Error stopping app.")
     };
 });
-function sessionUpdateListener(isAlive){
-        var message=isAlive ? 'Session Updated' : 'Session Removed';
-        message += ':' + session.sessionId;
-        
-        if (!isAlive) {
-            session=null;
-        }
-}
