@@ -68,7 +68,7 @@ $('#castme').click(function(){
         
     };
     function onLoadError() {
-        console.log("Failed to load image.")
+        console.log("Failed to load image.");
     };
     function sessionUpdateListener(isAlive){
         var message=isAlive ? 'Session Updated' : 'Session Removed';
@@ -97,4 +97,22 @@ $('#stop').click(function(){
 });
 $('#change').click(function(){
     loadMedia();
+    function loadMedia() {
+        if (!session) {
+            console.log("No session.");
+            return;
+        }
+        var mediaInfo=new chrome.cast.media.MediaInfo('http://i.imgur.com/IFD14.jpg');
+        mediaInfo.contentType='image/jpg';
+        var request=new chrome.cast.media.LoadRequest(mediaInfo);
+        request.autoplay=true;
+        session.loadMedia(request,onLoadSuccess,onLoadError);
+    };
+    function onLoadSuccess() {
+        console.log("Successfully loaded image.");
+        
+    };
+    function onLoadError() {
+        console.log("Failed to load image.");
+    };
 });
