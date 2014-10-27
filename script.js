@@ -45,6 +45,7 @@ $('#castme').click(function(){
     function onRequestSessionSuccess(e){
         console.log("Successfully created session: " + e.sessionId);
         session=e;
+        session.addUpdateListener(sessionUpdateListener.bind(this));
         loadMedia();
     };
     function onLaunchError() {
@@ -68,6 +69,14 @@ $('#castme').click(function(){
     function onLoadError() {
         console.log("Failed to load image.")
     };
+    function sessionUpdateListener(isAlive){
+        var message=isAlive ? 'Session Updated' : 'Session Removed';
+        message += ':' + session.sessionId;
+        
+        if (!isAlive) {
+            session=null;
+        }
+    }
 });
 $('#stop').click(function(){
     stopApp();
