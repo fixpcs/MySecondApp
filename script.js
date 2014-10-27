@@ -34,14 +34,6 @@ $(document).ready(function(){
     };
     function onInitError(){
         console.log("Initialization failed.");
-    };
-    function sessionUpdateListener(isAlive){
-        var message=isAlive ? 'Session Updated' : 'Session Removed';
-        message += ':' + session.sessionId;
-        
-        if (!isAlive) {
-            session=null;
-        }
     };   
 })
 $('#castme').click(function(){
@@ -76,6 +68,14 @@ $('#castme').click(function(){
     };
     function onLoadError() {
         console.log("Failed to load image.")
+    };
+    function sessionUpdateListener(isAlive){
+        var message=isAlive ? 'Session Updated' : 'Session Removed';
+        message += ':' + session.sessionId;
+        
+        if (!isAlive) {
+            session=null;
+        }
     };
 });
 $('#stop').click(function(){
